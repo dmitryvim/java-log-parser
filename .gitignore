@@ -8,6 +8,7 @@ bin/*
 .idea/*
 *.iws
 *.ipr
+*.iml
 
 #code
 .project
