@@ -42,20 +42,29 @@ public class Args {
                 .toFormatter();
     }
 
-    public Optional<LocalDateTime> startDate() {
-        return value("startDate").map(date -> LocalDateTime.parse(date, argDateTimeFormatter()));
+    public LocalDateTime startDate() {
+        return value("startDate")
+                .map(date -> LocalDateTime.parse(date, argDateTimeFormatter()))
+                .orElseThrow(() -> new IllegalArgumentException("Unable to find argument startDate."));
     }
 
-    public Optional<Duration> duration() {
-        return value("duration").map(String::toUpperCase).map(Duration::valueOf);
+    public Duration duration() {
+        return value("duration")
+                .map(String::toUpperCase)
+                .map(Duration::valueOf)
+                .orElseThrow(() -> new IllegalArgumentException("Unable to find argument duration."));
     }
 
-    public Optional<Integer> threshold() {
-        return value("threshold").map(Integer::parseInt);
+    public int threshold() {
+        return value("threshold")
+                .map(Integer::parseInt)
+                .orElseThrow(() -> new IllegalArgumentException("Unable to find argument threshold."));
     }
 
-    public Optional<File> file() {
-        return value("file").map(File::new);
+    public File file() {
+        return value("file")
+                .map(File::new)
+                .orElse(new File("access.log"));
     }
 
     private Optional<String> value(String key) {

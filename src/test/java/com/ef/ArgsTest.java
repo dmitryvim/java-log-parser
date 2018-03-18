@@ -23,9 +23,9 @@ public class ArgsTest {
         );
 
         // then
-        assertEquals(Duration.HOURLY, args.duration().get());
-        assertEquals(LocalDateTime.of(2017, 01, 01, 13, 0, 0, 0), args.startDate().get());
-        assertEquals(new Integer(100), args.threshold().get());
-        assertEquals(new File("access.log"), args.file().get());
+        assertEquals(Duration.HOURLY, args.duration());
+        assertEquals(LocalDateTime.of(2017, 01, 01, 13, 0, 0, 0), args.startDate());
+        assertEquals(100, args.threshold());
+        assertEquals(new File("access.log"), args.file());
     }
 }
