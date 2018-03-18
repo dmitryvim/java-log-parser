@@ -10,7 +10,7 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
 /**
  * @author dmitry.mikhailovich@gmail.com
  */
-public class Line {
+public class Log {
     private final LocalDateTime timestamp;
 
     private final String ip;
@@ -21,7 +21,7 @@ public class Line {
 
     private final String agent;
 
-    public Line(String line) {
+    public Log(String line) {
         String[] params = line.split("[|]", 5);
         if (params.length < 5) {
             throw new IllegalArgumentException("Unable to create log line. Expected log format: Date|IP|Request|Status|User Agent");
