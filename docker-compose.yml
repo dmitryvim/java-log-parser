@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: log_parser
+      MYSQL_USER: parser
+      MYSQL_PASSWORD: parser
+    ports:
+      - 3306:3306
