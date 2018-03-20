@@ -1,4 +1,31 @@
-# java-log-parser
+# instructions
+
+
+## Build project
+
+Run gradlew command `./gradlew build` you can find parser.jar at path `build/libs/parser.jar`
+
+## Java source code
+
+Java sources: `src/main/java`
+
+## init mysql
+
+You can start mysql server via docker-compose, run `docker-compose up`
+
+To create table, run `mysql --user=parser --password=parser --database=log_parser --host=127.0.0.1 < src/main/sql/create_logs_table.sql`
+
+## Run tool
+
+```bash
+java -cp parser.jar com.ef.Parser --startDate=2017-01-01.13:00:00 --duration=daily --threshold=250 --file=access.log
+```
+
+## Check sql table content
+
+TODO
+
+# intial task
 
 The goal is to write a parser in Java that parses web server access log file, loads the log to MySQL and checks if a given IP makes more than a certain number of requests for the given duration. 
 
@@ -67,5 +94,3 @@ Deliverables
 (3) MySQL schema used for the log data
 
 (4) SQL queries for SQL test
-
-
