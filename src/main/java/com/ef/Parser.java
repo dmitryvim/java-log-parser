@@ -14,15 +14,17 @@ public class Parser {
         LocalDateTime startDate = arguments.startDate();
         LocalDateTime endDate = arguments.startDate().plus(1, duration.units());
         try (LogReader reader = new LogReader(arguments.file())) {
-
-            reader.logStream()
-                    .filter(log -> log.getTimestamp().isAfter(startDate))
-                    .filter(log -> log.getTimestamp().isBefore(endDate))
-                    .collect(Collectors.groupingBy(Log::getIp))
-                    .entrySet().stream()
-                    .filter(entry -> entry.getValue().size() > threshold)
-                    .map(Map.Entry::getKey)
-                    .forEach(System.out::println);
+            try (LogSaver saver = new LogSaver()) {
+                reader.logStream()
+                        .peek(saver::save)
+                        .filter(log -> log.getLogDate().isAfter(startDate))
+                        .filter(log -> log.getLogDate().isBefore(endDate))
+                        .collect(Collectors.groupingBy(Log::getIp))
+                        .entrySet().stream()
+                        .filter(entry -> entry.getValue().size() > threshold)
+                        .map(Map.Entry::getKey)
+                        .forEach(System.out::println);
+            }
         } catch (IOException e) {
             throw new IllegalArgumentException("Unexpected IO error occurred.", e);
         }

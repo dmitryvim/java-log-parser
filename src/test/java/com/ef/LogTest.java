@@ -20,7 +20,7 @@ public class LogTest {
         Log log = new Log(initialLine);
 
         // then
-        assertEquals(LocalDateTime.of(2017, 1, 1, 0, 0, 11, 763000000), log.getTimestamp());
+        assertEquals(LocalDateTime.of(2017, 1, 1, 0, 0, 11, 763000000), log.getLogDate());
         assertEquals("192.168.234.82", log.getIp());
         assertEquals("GET / HTTP/1.1", log.getRequest());
         assertEquals(200, log.getStatus());

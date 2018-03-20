@@ -1,5 +1,9 @@
 package com.ef;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -10,23 +14,30 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
 /**
  * @author dmitry.mikhailovich@gmail.com
  */
+@Entity
+@Table(name = "Logs")
 public class Log {
-    private final LocalDateTime timestamp;
 
-    private final String ip;
+    @Id
+    private int id;
 
-    private final String request;
+    @Column(name = "log_date")
+    private LocalDateTime logDate;
 
-    private final int status;
+    private String ip;
 
-    private final String agent;
+    private String request;
+
+    private int status;
+
+    private String agent;
 
     public Log(String line) {
         String[] params = line.split("[|]", 5);
         if (params.length < 5) {
             throw new IllegalArgumentException("Unable to create log line. Expected log format: Date|IP|Request|Status|User Agent");
         }
-        this.timestamp = LocalDateTime.parse(params[0], logDateTimeFormatter());
+        this.logDate = LocalDateTime.parse(params[0], logDateTimeFormatter());
         this.ip = params[1];
         this.request = ofQuotes(params[2]);
         this.status = Integer.parseInt(params[3]);
@@ -50,8 +61,12 @@ public class Log {
                 .toFormatter();
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public Log() {
+        // ignored, for hibernate
+    }
+
+    public LocalDateTime getLogDate() {
+        return logDate;
     }
 
     public String getIp() {
@@ -68,5 +83,33 @@ public class Log {
 
     public String getAgent() {
         return agent;
+    }
+
+    public void setLogDate(LocalDateTime logDate) {
+        this.logDate = logDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public void setRequest(String request) {
+        this.request = request;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setAgent(String agent) {
+        this.agent = agent;
     }
 }
