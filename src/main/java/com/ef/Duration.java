@@ -3,7 +3,7 @@ package com.ef;
 import java.time.temporal.ChronoUnit;
 
 /**
- * @author dmitry.mikhaylovich@bostongene.com
+ * @author dmitry.mikhailovich@gmail.com
  */
 public enum Duration {
     DAILY(ChronoUnit.DAYS), HOURLY(ChronoUnit.HOURS);

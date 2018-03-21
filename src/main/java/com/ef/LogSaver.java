@@ -9,7 +9,7 @@ import java.io.Closeable;
 import java.io.IOException;
 
 /**
- * @author dmitry.mikhaylovich@bostongene.com
+ * @author dmitry.mikhailovich@gmail.com
  */
 public class LogSaver implements Closeable {
 
@@ -27,7 +27,6 @@ public class LogSaver implements Closeable {
     }
 
     private static SessionFactory configureSessionFactory() {
-        // TODO turn off logs
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
         ServiceRegistry serviceRegistry = configuration.getStandardServiceRegistryBuilder().build();

@@ -13,7 +13,7 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
 
 /**
- * @author dmitry.mikhaylovich@bostongene.com
+ * @author dmitry.mikhailovich@gmail.com
  */
 public class Args {
     private Map<String, String> values = new HashMap<>();

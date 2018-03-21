@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author dmitry.mikhaylovich@bostongene.com
+ * @author dmitry.mikhailovich@gmail.com
  */
 public class ArgsTest {
 

@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.stream.Stream;
 
 /**
- * @author dmitry.mikhaylovich@bostongene.com
+ * @author dmitry.mikhailovich@gmail.com
  */
 public class LogReader implements Closeable {
 
