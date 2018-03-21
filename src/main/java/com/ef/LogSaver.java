@@ -2,7 +2,6 @@ package com.ef;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
@@ -15,8 +14,11 @@ import java.io.IOException;
 public class LogSaver implements Closeable {
 
     private static final int BUFFER_SIZE = 10000;
+
     private final SessionFactory sessionFactory;
+
     private int buffer = 0;
+
     private Session session;
 
     public LogSaver() {
@@ -26,13 +28,11 @@ public class LogSaver implements Closeable {
 
     private static SessionFactory configureSessionFactory() {
         // TODO turn off logs
-        Configuration conf = new Configuration();
-        conf.configure("hibernate.cfg.xml");
-        // FIXME should be only in xml file
-        conf.addAnnotatedClass(Log.class);
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate.cfg.xml");
+        ServiceRegistry serviceRegistry = configuration.getStandardServiceRegistryBuilder().build();
         try {
-            return conf.buildSessionFactory(serviceRegistry);
+            return configuration.buildSessionFactory(serviceRegistry);
         } catch (Exception e) {
             throw new ExceptionInInitializerError(e);
         }
