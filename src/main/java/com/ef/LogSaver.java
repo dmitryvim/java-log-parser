@@ -22,6 +22,7 @@ public class LogSaver implements Closeable {
     }
 
     private static SessionFactory configureSessionFactory() {
+        // TODO turn off logs
         Configuration conf = new Configuration();
         conf.configure("hibernate.cfg.xml");
         // FIXME should be only in xml file
@@ -36,7 +37,6 @@ public class LogSaver implements Closeable {
 
     public void save(Log log) {
         try (Session session = this.sessionFactory.openSession()) {
-            System.out.println(log);
             Transaction transaction = session.beginTransaction();
             session.save(log);
             transaction.commit();

@@ -1,5 +1,7 @@
 apply plugin: 'java'
 
+//TODO check fat jar
+
 repositories {
     jcenter()  
 }
