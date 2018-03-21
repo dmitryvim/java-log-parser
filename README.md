@@ -23,7 +23,17 @@ java -cp parser.jar com.ef.Parser --startDate=2017-01-01.13:00:00 --duration=dai
 
 ## Check sql table content
 
-TODO
+To find all requests from ip "192.168.206.25" try 
+
+```bash
+mysql --user=parser --password=parser --database=log_parser --host=127.0.0.1 < src/main/sql/find_all_requests_by_ip.sql
+```
+
+To find IPs that made more than 100 requests starting from 2017-01-01.13:00:00 to 2017-01-01.14:00:00.
+
+```bash
+mysql --user=parser --password=parser --database=log_parser --host=127.0.0.1 < src/main/sql/find_all_requests_exceeded_limit.sql
+```
 
 # intial task
 

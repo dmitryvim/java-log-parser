@@ -1,0 +1,2 @@
+SELECT * FROM Logs
+WHERE ip="192.168.206.25";
